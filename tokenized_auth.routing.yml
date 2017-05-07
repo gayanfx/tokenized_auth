@@ -1,0 +1,8 @@
+tokenized_auth.login:
+  path: '/tokenized_auth/user/login'
+  defaults:
+    _controller: \Drupal\tokenized_auth\Controller\UserAuthenticationController::login
+  methods: [POST]
+  requirements:
+    _user_is_logged_in: 'FALSE'
+    _format: 'json'

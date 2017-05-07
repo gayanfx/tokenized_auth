@@ -1,0 +1,52 @@
+<?php
+/**
+ * Implements hook_schema().
+ *
+ * Defines the database tables used by this module.
+ *
+ * @see hook_schema()
+ *
+ * @ingroup tokenized_auth
+ */
+function tokenized_auth_schema() {
+  $schema['tokenized_auth'] = array(
+    'description' => 'Stores tokens for user authentication.',
+    'fields' => array(
+      'token' => array(
+        'type' => 'varchar',
+        'length' => 100,
+        'not null' => TRUE,
+        'default' => '',
+        'description' => 'Token',
+      ),
+      'uid' => array(
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+        'description' => "User's {users}.uid",
+      ),
+      'ip_address' => array(
+        'type' => 'varchar',
+        'length' => 100,
+        'not null' => TRUE,
+        'default' => '',
+        'description' => 'Surname of the person.',
+      ),
+      'expires' => array(
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+        'size' => 'big',
+        'description' => 'Token expire time',
+      ),
+    ),
+    'primary key' => array('token'),
+    'indexes' => array(
+      'token' => array('token'),
+      'ip_address' => array('ip_address'),
+      'uid' => array('uid'),
+    ),
+  );
+
+  return $schema;
+}

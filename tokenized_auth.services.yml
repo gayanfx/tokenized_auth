@@ -1,0 +1,8 @@
+services:
+  tokenized_auth.authentication.tokenized_auth:
+    class: Drupal\tokenized_auth\Authentication\Provider\TokenizedAuth
+    arguments: ['@entity.manager']
+    tags:
+      - { name: authentication_provider, provider_id: 'tokenized_auth', priority: 100 }
+  tokenized_auth.token_storage:
+    class: Drupal\tokenized_auth\TokenStorage
