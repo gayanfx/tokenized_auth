@@ -25,13 +25,6 @@ function tokenized_auth_schema() {
         'default' => 0,
         'description' => "User's {users}.uid",
       ),
-      'ip_address' => array(
-        'type' => 'varchar',
-        'length' => 100,
-        'not null' => TRUE,
-        'default' => '',
-        'description' => 'Surname of the person.',
-      ),
       'expires' => array(
         'type' => 'int',
         'not null' => TRUE,
@@ -43,7 +36,6 @@ function tokenized_auth_schema() {
     'primary key' => array('token'),
     'indexes' => array(
       'token' => array('token'),
-      'ip_address' => array('ip_address'),
       'uid' => array('uid'),
     ),
   );
