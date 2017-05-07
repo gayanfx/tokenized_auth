@@ -17,7 +17,7 @@ use Drupal\rest\ResourceResponse;
  * )
  */
 class UserLogoutResource extends ResourceBase {
-  public function post($args) {
+  public function post($data) {
     $uid = \Drupal::currentUser()->id();
     if($uid){
       \Drupal::service('tokenized_auth.token_storage')->deleteToken($uid);
