@@ -27,5 +27,11 @@ class TokenStorage {
     $result = $query->execute()->fetchAssoc();
     return $result;
   }
+  
+  public function deleteToken($uid) {
+    $query = \Drupal::database()->delete('tokenized_auth');
+    $query->condition('uid', $uid);
+    $query->execute();
+  }
 
 }

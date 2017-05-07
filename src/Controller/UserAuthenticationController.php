@@ -23,20 +23,6 @@ use Symfony\Component\Serializer\Serializer;
 class UserAuthenticationController extends ControllerBase implements ContainerInjectionInterface {
 
   /**
-   * String sent in responses, to describe the user as being logged in.
-   *
-   * @var string
-   */
-  const LOGGED_IN = 1;
-
-  /**
-   * String sent in responses, to describe the user as being logged out.
-   *
-   * @var string
-   */
-  const LOGGED_OUT = 0;
-
-  /**
    * The flood controller.
    *
    * @var \Drupal\Core\Flood\FloodInterface
@@ -204,13 +190,6 @@ class UserAuthenticationController extends ControllerBase implements ContainerIn
    */
   protected function userIsBlocked($name) {
     return user_is_blocked($name);
-  }
-
-  /**
-   * Logs the user out.
-   */
-  protected function userLogout() {
-    user_logout();
   }
 
   /**
