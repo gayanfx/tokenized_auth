@@ -12,18 +12,18 @@ function tokenized_auth_schema() {
   $schema['tokenized_auth'] = array(
     'description' => 'Stores tokens for user authentication.',
     'fields' => array(
+      'uid' => array(
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+        'description' => "User's {users}.uid",
+      ),
       'token' => array(
         'type' => 'varchar',
         'length' => 100,
         'not null' => TRUE,
         'default' => '',
         'description' => 'Token',
-      ),
-      'uid' => array(
-        'type' => 'int',
-        'not null' => TRUE,
-        'default' => 0,
-        'description' => "User's {users}.uid",
       ),
       'expires' => array(
         'type' => 'int',
@@ -33,10 +33,9 @@ function tokenized_auth_schema() {
         'description' => 'Token expire time',
       ),
     ),
-    'primary key' => array('token'),
+    'primary key' => array('uid'),
     'indexes' => array(
       'token' => array('token'),
-      'uid' => array('uid'),
     ),
   );
 

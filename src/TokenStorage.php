@@ -7,22 +7,18 @@ class TokenStorage {
   public function generateToken($uid) {
     $uuid_service = \Drupal::service('uuid');
     $uuid = $uuid_service->generate();
-    $query = \Drupal::database()->delete('tokenized_auth');
-    $query->condition('uid', $uid);
-    $query->execute();
-
-    $query = \Drupal::database()->insert('tokenized_auth')
+    db_merge('tokenized_auth')
+        ->key(array('uid' => $uid))
         ->fields([
-      'token' => $uuid,
-      'uid' => $uid,
-      'expires' => strtotime('+2 months'),
-    ]);
-    $query->execute();
-    
+          'uid' => $uid,
+          'token' => $uuid,
+          'expires' => strtotime('+2 months'),
+        ])
+        ->execute();
     return $uuid;
   }
 
-  public function getToken($token){
+  public function getToken($token) {
     $query = \Drupal::database()->select('tokenized_auth', 'ta');
     $query->fields('ta', ['uid']);
     $query->condition('token', $token);
@@ -31,4 +27,5 @@ class TokenStorage {
     $result = $query->execute()->fetchAssoc();
     return $result;
   }
+
 }
